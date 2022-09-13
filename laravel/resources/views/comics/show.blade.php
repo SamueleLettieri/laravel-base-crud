@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
-@section('title', 'Main comics')
+@section('title', 'Comic: ' . $comic->title)
 
 @section('main-content')
 
 <div>
-    <ul></ul>
+
 </div>
 
 
