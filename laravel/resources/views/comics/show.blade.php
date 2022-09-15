@@ -18,7 +18,7 @@
 
         </div>
         <div class="card-footer text-muted ">
-            {{$comic->sale_date}}
+            {{$comic->sale_date}} / {{$comic->type}}
         </div>
     </div>
 </div>

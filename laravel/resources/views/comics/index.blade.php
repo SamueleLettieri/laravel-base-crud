@@ -13,6 +13,7 @@
         <th>SERIES</th>
         <th>SALE_DATE</th>
         <th>TYPE</th>
+        <th>Button</th>
     </thead>
     <tbody>
         @foreach ($comics as $comic)
@@ -23,6 +24,7 @@
             <td>{{$comic->series}}</td>
             <td>{{$comic->sale_date}}</td>
             <td>{{$comic->type}}</td>
+            <td><a href="{{route('comics.edit', $comic->id)}}" class="btn btn-sm btn-success">edit</a></td>
         </tr>
         @endforeach    
     </tbody>
