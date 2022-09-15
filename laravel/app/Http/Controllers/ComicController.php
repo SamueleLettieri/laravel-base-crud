@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -103,6 +104,8 @@ class ComicController extends Controller
         $comic->sale_date = $data['sale_date'];
         $comic->type = $data['type'];
         
+        $comic->slug = Str::slug($comic->title,'-') . "-" . $comic->id;
+
         $comic->save();
         return redirect()->route('comics.show', $comic->id);
     }
@@ -116,5 +119,7 @@ class ComicController extends Controller
     public function destroy($id)
     {
         //
+        Comic::destroy($id);
+        return redirect()->route('comics.index');
     }
 }

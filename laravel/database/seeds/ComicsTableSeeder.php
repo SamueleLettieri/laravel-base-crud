@@ -139,3 +139,4 @@ class ComicsTableSeeder extends Seeder
 
     }
 }
+

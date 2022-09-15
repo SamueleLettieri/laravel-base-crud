@@ -6,7 +6,7 @@
 
 <div class="container mt-5">
     <table class="table table-success table-striped">
-    <thead>
+    <thead class="text-center">
         <th>ID</th>
         <th>TITLE</th>
         <th>PRICE</th>
@@ -24,7 +24,14 @@
             <td>{{$comic->series}}</td>
             <td>{{$comic->sale_date}}</td>
             <td>{{$comic->type}}</td>
-            <td><a href="{{route('comics.edit', $comic->id)}}" class="btn btn-sm btn-success">edit</a></td>
+            <td>
+                <a href="{{route('comics.edit', $comic->id)}}" class="btn px-3 mx-2  btn-sm btn-primary">Edit</a>
+                <form action="{{route('comics.destroy', $comic->id)}}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn px-3 mx-2  btn-sm btn-danger">Remove</button>
+                </form>
+            </td>
         </tr>
         @endforeach    
     </tbody>
