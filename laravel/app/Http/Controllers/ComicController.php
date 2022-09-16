@@ -8,6 +8,17 @@ use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
+
+    protected $validationForm = [
+        'title' => 'required|min:3|max:255',
+        'description' => 'required|min:10',
+        'thumb' => 'required|min:3|',
+        'price' => 'required|numeric',
+        'series' => 'required|min:3|max:255',
+        'sale_date' => 'required|date|after:1900/01/01',
+        'type' => 'required|max:255',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +39,8 @@ class ComicController extends Controller
     public function create()
     {
         //
-        return view('comics.create');
+        $comic = new Comic();
+        return view('comics.create', compact('comic'));
     }
 
     /**
@@ -40,6 +52,9 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $validated = $request->validate($this->validationForm);
+
         $data = $request->all();
 
         $comic = new Comic();
@@ -93,6 +108,9 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validated = $request->validate($this->validationForm);
+
+
         $data = $request->all();
         $comic = Comic::findOrFail($id);
 
